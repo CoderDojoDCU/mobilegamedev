@@ -116,6 +116,12 @@ div.cylinder .bottom {
 	box-shadow: 0px 0px 10px rdba(0,0,0,0.75);
 }
 
+img#ninja {
+    width: 80px;
+    margin-top: -120px;
+    position: absolute;
+}
+
 
 
 
