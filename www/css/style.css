@@ -118,6 +118,8 @@ div.cylinder .bottom {
 
 img#ninja {
     width: 80px;
+   	/* 4. Setting the Height */
+    height: 120px;
     margin-top: -120px;
     position: absolute;
 }

@@ -5,13 +5,14 @@ var ninja;
 var screenWidth = screen.width;
 var runBy = 10;
 
+
 function startGame() {
 	cylinder = 	$("#cylinder");
     ninja = $("#ninja");
     ninja.click(function() {
         run();
     });
-	jump(10);
+    jump(10);
 }
 
 function jump() {
@@ -40,9 +41,36 @@ function run() {
     var newLeftPosition = ninjaLeft+runBy;
     console.log(newLeftPosition);
     ninja.css('left', newLeftPosition+"px");
-    
-    run();
 
+    if(newLeftPosition > screenWidth) {
+        switchDirection();
+        setTimeout(run, 20);
+    }
+    else if (newLeftPosition < 0) {
+        stop();
+    }
+    else {
+        if(isCollision()) {
+            alert('Game over');
+            
+        } else {
+            setTimeout(run, 20);
+        }
+    }
+
+}
+
+
+function switchDirection() {
+    runBy = runBy * -1;
+    ninja.attr('src','img/ninjas-red.png');
+}
+
+function stop() {
+    ninja.css('left', "0px");
+    ninja.attr('src','img/ninjas-green.png');
+    runBy = runBy * -1;
+   
 }
 
 startGame();
