@@ -4,7 +4,7 @@ var jumpBy = 10;
 var ninja;
 var screenWidth = screen.width;
 var runBy = 10;
-
+var score;
 
 function startGame() {
 	cylinder = 	$("#cylinder");
@@ -12,6 +12,7 @@ function startGame() {
     ninja.click(function() {
         run();
     });
+    score = 10;
     jump(10);
 }
 
@@ -48,6 +49,8 @@ function run() {
     }
     else if (newLeftPosition < 0) {
         stop();
+        score = score * 2;
+        updateScore();
     }
     else {
         if(isCollision()) {
@@ -57,7 +60,26 @@ function run() {
             setTimeout(run, 20);
         }
     }
+}
 
+function isCollision() {
+    var ninjaPosition = ninja.offset();
+    var cylinderPosition = cylinder.offset();
+    var ninjaLeft = ninjaPosition.left;
+    var ninjaRight = ninjaLeft+80;
+    
+    var cylinderLeft = cylinderPosition.left;
+    var cylinderRight = cylinderLeft + 50;
+    var cylinderGap = screenHeight - (cylinderPosition.top+350);
+    
+    if(ninjaRight > cylinderLeft
+       && ninjaLeft < cylinderRight
+       && cylinderGap < 150) {
+        return true;
+    } else {
+        return false;
+    }
+    
 }
 
 
@@ -71,6 +93,10 @@ function stop() {
     ninja.attr('src','img/ninjas-green.png');
     runBy = runBy * -1;
    
+}
+
+function updateScore() {
+    $("#score").html(score);
 }
 
 startGame();

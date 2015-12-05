@@ -124,6 +124,14 @@ img#ninja {
     position: absolute;
 }
 
+div#score {
+    position: absolute;
+    right: 5%;
+    top: 10%;
+    color: yellow;
+    font-size: 50px;
+}
+
 
 
 
